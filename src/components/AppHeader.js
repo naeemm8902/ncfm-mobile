@@ -1,14 +1,16 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, Image, Pressable, TextInput, StyleSheet, Platform, FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, radii, spacing, type } from '../theme';
 import images from '../data/images';
 import { allArticles } from '../data/categories';
+import { useDrawer } from '../navigation/DrawerContext';
 
 export default function AppHeader({ title }) {
   const navigation = useNavigation();
+  const { open: openDrawer } = useDrawer();
   const insets = useSafeAreaInsets();
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -62,7 +64,7 @@ export default function AppHeader({ title }) {
         ) : (
           <>
             <Pressable
-              onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+              onPress={openDrawer}
               style={styles.iconBtn}
               hitSlop={8}
             >
