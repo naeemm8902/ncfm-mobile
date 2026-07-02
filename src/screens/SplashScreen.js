@@ -1,64 +1,43 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, Image, Animated, StyleSheet } from 'react-native';
-import { colors } from '../utils/theme';
+import { View, Image, Animated, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { colors } from '../theme';
+import images from '../data/images';
 
 export default function SplashScreen({ onFinish }) {
-  const scaleAnim = useRef(new Animated.Value(0.8)).current;
+  const scaleAnim = useRef(new Animated.Value(0.85)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.parallel([
-      Animated.timing(opacityAnim, {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.spring(scaleAnim, {
-        toValue: 1,
-        friction: 5,
-        useNativeDriver: true,
-      }),
+      Animated.timing(opacityAnim, { toValue: 1, duration: 600, useNativeDriver: true }),
+      Animated.spring(scaleAnim, { toValue: 1, friction: 5, useNativeDriver: true }),
     ]).start();
 
     const timer = setTimeout(() => {
       onFinish && onFinish();
-    }, 2200);
+    }, 1800);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Animated.View
-        style={{ opacity: opacityAnim, transform: [{ scale: scaleAnim }], alignItems: 'center' }}
-      >
-        <Image
-          source={require('../../assets/splash-icon.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
-        <Text style={styles.title}>Mobile App</Text>
+    <LinearGradient colors={[colors.navyDeep, colors.navy]} style={styles.container}>
+      <Animated.View style={{ opacity: opacityAnim, transform: [{ scale: scaleAnim }], alignItems: 'center' }}>
+        <Image source={images.logoWhite} style={styles.logo} resizeMode="contain" />
       </Animated.View>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
   logo: {
-    width: 140,
-    height: 140,
-    marginBottom: 24,
-  },
-  title: {
-    color: colors.textPrimary,
-    fontSize: 26,
-    fontWeight: '700',
-    letterSpacing: 1,
+    width: 260,
+    height: 70,
   },
 });

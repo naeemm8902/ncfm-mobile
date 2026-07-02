@@ -1,32 +1,35 @@
 {
   "expo": {
-    "name": "Mobile App",
-    "slug": "mobile-app",
+    "name": "Nashville Christian Family",
+    "slug": "nashville-christian-family",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0A0A0F"
+      "backgroundColor": "#002F6C"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.example.mobileapp"
+      "bundleIdentifier": "com.ncfm.mobile"
     },
     "android": {
-      "package": "com.example.mobileapp",
+      "package": "com.ncfm.mobile",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#0A0A0F"
+        "backgroundColor": "#002F6C"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
