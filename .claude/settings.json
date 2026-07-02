@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf AppIcon.appiconset AppIcons)",
+      "Bash(rm -f Donatebackground.png GSNNavBarIconTransparent.png gsn-background.jpeg gsn-official-logo.png logo.png facebook.png instagram.png x.png youtube.png)",
+      "Bash(npx expo-doctor *)",
+      "Bash(npx expo *)"
+    ]
+  }
+}
