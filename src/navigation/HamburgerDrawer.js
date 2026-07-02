@@ -11,7 +11,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation, useNavigationState } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, radii, spacing, type } from '../theme';
 import images from '../data/images';
@@ -19,15 +18,14 @@ import navLinks from '../data/navLinks';
 import { contactInfo, socialLinks } from '../data/siteContent';
 import Button from '../components/Button';
 import { useDrawer } from './DrawerContext';
+import { navigate } from './navigationRef';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const DRAWER_WIDTH = Math.min(320, SCREEN_WIDTH * 0.82);
 
 export default function HamburgerDrawer() {
-  const { isOpen, close } = useDrawer();
-  const navigation = useNavigation();
+  const { isOpen, close, activeRoute } = useDrawer();
   const insets = useSafeAreaInsets();
-  const activeRoute = useNavigationState((state) => (state ? state.routes[state.index].name : null));
 
   const translateX = useRef(new Animated.Value(-DRAWER_WIDTH)).current;
   const backdropOpacity = useRef(new Animated.Value(0)).current;
@@ -51,7 +49,7 @@ export default function HamburgerDrawer() {
   if (!mounted) return null;
 
   function go(screen) {
-    navigation.navigate(screen);
+    navigate(screen);
     close();
   }
 

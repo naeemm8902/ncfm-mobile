@@ -2,7 +2,8 @@ import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { DrawerProvider } from './DrawerContext';
+import { DrawerProvider, useDrawer } from './DrawerContext';
+import { navigationRef, getActiveRouteName } from './navigationRef';
 import HamburgerDrawer from './HamburgerDrawer';
 import AppHeader from '../components/AppHeader';
 import { colors } from '../theme';
@@ -35,32 +36,45 @@ const navTheme = {
   },
 };
 
+function NavigationRoot() {
+  const { setActiveRoute } = useDrawer();
+
+  return (
+    <NavigationContainer
+      ref={navigationRef}
+      theme={navTheme}
+      onReady={() => setActiveRoute(getActiveRouteName())}
+      onStateChange={() => setActiveRoute(getActiveRouteName())}
+    >
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          header: () => <AppHeader />,
+          contentStyle: { backgroundColor: colors.surface },
+        }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Categories" component={CategoriesScreen} />
+        <Stack.Screen name="CategoryDetail" component={CategoryDetailScreen} />
+        <Stack.Screen name="ArticleDetail" component={ArticleDetailScreen} />
+        <Stack.Screen name="Issues" component={IssuesScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="Partners" component={PartnersScreen} />
+        <Stack.Screen name="Advertise" component={AdvertiseScreen} />
+        <Stack.Screen name="Contact" component={ContactScreen} />
+        <Stack.Screen name="Prayer" component={PrayerScreen} />
+        <Stack.Screen name="Shop" component={ShopScreen} />
+        <Stack.Screen name="Subscribe" component={SubscribeScreen} />
+      </Stack.Navigator>
+      <HamburgerDrawer />
+    </NavigationContainer>
+  );
+}
+
 export default function AppNavigator() {
   return (
-    <NavigationContainer theme={navTheme}>
-      <DrawerProvider>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            header: () => <AppHeader />,
-            contentStyle: { backgroundColor: colors.surface },
-          }}
-        >
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Categories" component={CategoriesScreen} />
-          <Stack.Screen name="CategoryDetail" component={CategoryDetailScreen} />
-          <Stack.Screen name="ArticleDetail" component={ArticleDetailScreen} />
-          <Stack.Screen name="Issues" component={IssuesScreen} />
-          <Stack.Screen name="About" component={AboutScreen} />
-          <Stack.Screen name="Partners" component={PartnersScreen} />
-          <Stack.Screen name="Advertise" component={AdvertiseScreen} />
-          <Stack.Screen name="Contact" component={ContactScreen} />
-          <Stack.Screen name="Prayer" component={PrayerScreen} />
-          <Stack.Screen name="Shop" component={ShopScreen} />
-          <Stack.Screen name="Subscribe" component={SubscribeScreen} />
-        </Stack.Navigator>
-        <HamburgerDrawer />
-      </DrawerProvider>
-    </NavigationContainer>
+    <DrawerProvider>
+      <NavigationRoot />
+    </DrawerProvider>
   );
 }
