@@ -235,10 +235,11 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.md,
+    justifyContent: 'space-between',
+    rowGap: spacing.md,
   },
   gridItem: {
-    width: '47%',
+    width: '48%',
   },
   advertiseCta: {
     borderRadius: radii.lg,

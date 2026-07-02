@@ -68,9 +68,10 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.sm,
+    justifyContent: 'space-between',
+    rowGap: spacing.md,
   },
   gridItem: {
-    width: '31.5%',
+    width: '48%',
   },
 });

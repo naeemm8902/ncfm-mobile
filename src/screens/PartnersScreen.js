@@ -322,8 +322,8 @@ const styles = StyleSheet.create({
   logoGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.md,
     justifyContent: 'space-between',
+    rowGap: spacing.md,
   },
   logoItem: {
     width: '30%',

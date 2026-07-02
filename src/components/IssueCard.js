@@ -14,7 +14,7 @@ export default function IssueCard({ issue, onPress, style }) {
 
 const styles = StyleSheet.create({
   wrap: {
-    flex: 1,
+    width: '100%',
   },
   cover: {
     width: '100%',

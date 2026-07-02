@@ -102,9 +102,10 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.md,
+    justifyContent: 'space-between',
+    rowGap: spacing.lg,
   },
   gridItem: {
-    width: '30.5%',
+    width: '31%',
   },
 });

@@ -6,7 +6,9 @@ import images from '../data/images';
 export default function ProductCard({ product, onPress, style }) {
   return (
     <View style={[styles.card, style]}>
-      <Image source={images[product.imageKey]} style={styles.image} resizeMode="cover" />
+      <View style={styles.imageWrap}>
+        <Image source={images[product.imageKey]} style={styles.image} resizeMode="contain" />
+      </View>
       <View style={styles.body}>
         <Text style={styles.title} numberOfLines={2}>{product.title}</Text>
         <Text style={styles.price}>{product.price}</Text>
@@ -20,16 +22,21 @@ export default function ProductCard({ product, onPress, style }) {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
     borderWidth: 1,
     borderColor: colors.border,
+    borderRadius: radii.md,
     backgroundColor: colors.white,
     overflow: 'hidden',
   },
-  image: {
+  imageWrap: {
     width: '100%',
     aspectRatio: 1,
     backgroundColor: colors.surfaceAlt,
+    padding: spacing.xs,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
   body: {
     padding: spacing.sm,
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     textAlign: 'center',
     marginBottom: 8,
-    minHeight: 32,
+    minHeight: 38,
   },
   price: {
     ...type.caption,
