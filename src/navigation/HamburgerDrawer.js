@@ -68,6 +68,7 @@ export default function HamburgerDrawer() {
         ]}
       >
         <View style={styles.header}>
+          <View style={styles.headerSpacer} />
           <Image source={images.logoWhite} style={styles.logo} resizeMode="contain" />
           <Pressable onPress={close} style={styles.closeBtn} hitSlop={8}>
             <Ionicons name="close" size={22} color={colors.white} />
@@ -96,29 +97,31 @@ export default function HamburgerDrawer() {
             })}
           </View>
 
-          <View style={styles.ctaBlock}>
-            <Button title="Subscribe" variant="gold" fullWidth onPress={() => go('Subscribe')} />
-            <Button
-              title="Shop"
-              variant="primary"
-              icon="bag-outline"
-              fullWidth
-              onPress={() => go('Shop')}
-              style={{ marginTop: 10 }}
-            />
-          </View>
+          <View style={styles.bottomBlock}>
+            <View style={styles.ctaBlock}>
+              <Button title="Subscribe" variant="gold" fullWidth onPress={() => go('Subscribe')} />
+              <Button
+                title="Shop"
+                variant="primary"
+                icon="bag-outline"
+                fullWidth
+                onPress={() => go('Shop')}
+                style={{ marginTop: 10 }}
+              />
+            </View>
 
-          <View style={styles.socialRow}>
-            {socialLinks.map((s) => (
-              <Pressable key={s.label} onPress={() => Linking.openURL(s.url)} style={styles.socialBtn} hitSlop={6}>
-                <Ionicons name={s.icon} size={18} color={colors.white} />
-              </Pressable>
-            ))}
-          </View>
+            <View style={styles.socialRow}>
+              {socialLinks.map((s) => (
+                <Pressable key={s.label} onPress={() => Linking.openURL(s.url)} style={styles.socialBtn} hitSlop={6}>
+                  <Ionicons name={s.icon} size={18} color={colors.white} />
+                </Pressable>
+              ))}
+            </View>
 
-          <View style={styles.footerInfo}>
-            <Text style={styles.footerText}>{contactInfo.phone}</Text>
-            <Text style={styles.footerText}>{contactInfo.email}</Text>
+            <View style={styles.footerInfo}>
+              <Text style={styles.footerText}>{contactInfo.phone}</Text>
+              <Text style={styles.footerText}>{contactInfo.email}</Text>
+            </View>
           </View>
         </ScrollView>
       </Animated.View>
@@ -150,8 +153,11 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.md,
   },
   logo: {
-    width: 150,
-    height: 34,
+    width: 120,
+    height: 68,
+  },
+  headerSpacer: {
+    width: 34,
   },
   closeBtn: {
     width: 34,
@@ -162,7 +168,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.12)',
   },
   scroll: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
     paddingBottom: spacing.xxl,
+  },
+  bottomBlock: {
+    paddingBottom: spacing.md,
   },
   navList: {
     paddingHorizontal: spacing.md,
