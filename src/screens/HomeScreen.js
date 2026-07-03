@@ -16,6 +16,8 @@ import AdvertiserSpotlight from '../components/AdvertiserSpotlight';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import Button from '../components/Button';
 import MediaKitModal from '../components/MediaKitModal';
+import Pill from '../components/Pill';
+import Reveal, { stagger } from '../components/Reveal';
 
 const partnerLogoKeys = [
   'partnerLogoDemos',
@@ -35,62 +37,71 @@ export default function HomeScreen() {
   return (
     <Screen>
       {/* HERO */}
-      <ImageBackground source={images.heroBg} style={styles.hero} resizeMode="cover">
-        <LinearGradient colors={['rgba(6,20,45,0.05)', 'rgba(6,20,45,0.55)']} style={StyleSheet.absoluteFill} />
-        <Text style={styles.heroTitle}>December Issue Available!</Text>
+      <Reveal distance={0}>
+        <ImageBackground source={images.heroBg} style={styles.hero} resizeMode="cover">
+          <LinearGradient colors={['rgba(6,20,45,0.05)', 'rgba(6,20,45,0.6)']} style={StyleSheet.absoluteFill} />
+          <Pill label="December 2025 Issue" variant="gold" style={{ marginBottom: 10 }} />
+          <Text style={styles.heroTitle}>December Issue Available!</Text>
 
-        <View style={styles.heroRow}>
-          <Image source={images.issueCover1} style={styles.heroCover} resizeMode="cover" />
-          <View style={styles.heroTextCol}>
-            <Text style={styles.heroName}>Megan Alexander</Text>
-            <Text style={styles.heroDesc}>Her New Book and Movie About the True Meaning of Christmas</Text>
-            <Text style={styles.heroMore}>and much more!</Text>
+          <View style={styles.heroRow}>
+            <Image source={images.issueCover1} style={styles.heroCover} resizeMode="cover" />
+            <View style={styles.heroTextCol}>
+              <Text style={styles.heroName}>Megan Alexander</Text>
+              <Text style={styles.heroDesc}>Her New Book and Movie About the True Meaning of Christmas</Text>
+              <Text style={styles.heroMore}>and much more!</Text>
+            </View>
           </View>
-        </View>
 
-        <View style={styles.heroButtons}>
-          <Button title="Read Now" variant="gold" size="sm" onPress={() => navigation.navigate('Issues')} />
-          <Button title="Subscribe" variant="outlineLight" size="sm" onPress={() => navigation.navigate('Subscribe')} />
-        </View>
-      </ImageBackground>
+          <View style={styles.heroButtons}>
+            <Button title="Read Now" variant="gold" size="sm" onPress={() => navigation.navigate('Issues')} />
+            <Button title="Subscribe" variant="outlineLight" size="sm" onPress={() => navigation.navigate('Subscribe')} />
+          </View>
+        </ImageBackground>
+      </Reveal>
 
       <Section first>
-        <PartnerMessageCard />
+        <Reveal delay={60}>
+          <PartnerMessageCard />
+        </Reveal>
       </Section>
 
       {/* PARTNER SPOTLIGHT */}
       <Section>
-        <SectionHeader eyebrow="Corporate Community Partners" title="Partner spotlight" />
-        <Text style={styles.bodyText}>
-          Thank you to our Corporate Community Partners — local organizations investing in trustworthy,
-          family-centered publishing across Middle Tennessee.
-        </Text>
-        <Image source={images.communityPartnerBadge} style={styles.badgeImg} resizeMode="contain" />
+        <Reveal delay={100}>
+          <SectionHeader eyebrow="Corporate Community Partners" title="Partner spotlight" />
+          <Text style={styles.bodyText}>
+            Thank you to our Corporate Community Partners — local organizations investing in trustworthy,
+            family-centered publishing across Middle Tennessee.
+          </Text>
+          <Image source={images.communityPartnerBadge} style={styles.badgeImg} resizeMode="contain" />
 
-        <View style={styles.marqueeCard}>
-          <Marquee speed={35}>
-            {partnerLogoKeys.map((key) => (
-              <Image key={key} source={images[key]} style={styles.marqueeLogo} resizeMode="contain" />
-            ))}
-          </Marquee>
-        </View>
+          <View style={styles.marqueeCard}>
+            <Marquee speed={35}>
+              {partnerLogoKeys.map((key) => (
+                <Image key={key} source={images[key]} style={styles.marqueeLogo} resizeMode="contain" />
+              ))}
+            </Marquee>
+          </View>
+        </Reveal>
       </Section>
 
       {/* FEATURED ARTICLES */}
       <Section>
-        <SectionHeader
-          eyebrow="Latest"
-          title="Featured articles"
-          subtitle="Faith-forward perspectives, practical family help, and Middle Tennessee highlights — refreshed each edition."
-        />
+        <Reveal delay={100}>
+          <SectionHeader
+            eyebrow="Latest"
+            title="Featured articles"
+            subtitle="Faith-forward perspectives, practical family help, and Middle Tennessee highlights — refreshed each edition."
+          />
+        </Reveal>
         <View style={styles.grid}>
-          {featuredArticles.map((a) => (
-            <View key={a.slug} style={styles.gridItem}>
+          {featuredArticles.map((a, i) => (
+            <Reveal key={a.slug} delay={stagger(i, 60, 360)} distance={16} style={styles.gridItem}>
               <ArticleCard
                 article={a}
                 onPress={() => navigation.navigate('ArticleDetail', { slug: a.slug, categorySlug: a.category })}
               />
-            </View>
+            </Reveal>
           ))}
         </View>
         <Button
@@ -103,52 +114,60 @@ export default function HomeScreen() {
 
       {/* ADVERTISER SPOTLIGHT */}
       <Section>
-        <AdvertiserSpotlight />
+        <Reveal>
+          <AdvertiserSpotlight />
+        </Reveal>
       </Section>
 
       {/* ADVERTISE CTA */}
       <Section>
-        <ImageBackground source={images.advertiseBg} style={styles.advertiseCta} imageStyle={{ borderRadius: radii.lg }}>
-          <LinearGradient colors={['rgba(0,25,60,0.55)', 'rgba(0,25,60,0.8)']} style={[StyleSheet.absoluteFill, { borderRadius: radii.lg }]} />
-          <Text style={styles.advertiseTitle}>Want to advertise with us?</Text>
-          <Text style={styles.advertiseDesc}>
-            Reach families who care about faith, local community, and meaningful spending. Review placements
-            and request the media kit on our Advertise page.
-          </Text>
-          <View style={styles.advertiseButtons}>
-            <MediaKitModal triggerSize="sm" />
-            <Button title="View advertising overview" variant="outlineLight" size="sm" onPress={() => navigation.navigate('Advertise')} />
-          </View>
-          <Image source={images.logoWhite} style={styles.advertiseLogo} resizeMode="contain" />
-        </ImageBackground>
+        <Reveal>
+          <ImageBackground source={images.advertiseBg} style={styles.advertiseCta} imageStyle={{ borderRadius: radii.lg }}>
+            <LinearGradient colors={['rgba(0,25,60,0.55)', 'rgba(0,25,60,0.8)']} style={[StyleSheet.absoluteFill, { borderRadius: radii.lg }]} />
+            <Text style={styles.advertiseTitle}>Want to advertise with us?</Text>
+            <Text style={styles.advertiseDesc}>
+              Reach families who care about faith, local community, and meaningful spending. Review placements
+              and request the media kit on our Advertise page.
+            </Text>
+            <View style={styles.advertiseButtons}>
+              <MediaKitModal triggerSize="sm" />
+              <Button title="View advertising overview" variant="outlineLight" size="sm" onPress={() => navigation.navigate('Advertise')} />
+            </View>
+            <Image source={images.logoWhite} style={styles.advertiseLogo} resizeMode="contain" />
+          </ImageBackground>
+        </Reveal>
       </Section>
 
       {/* TESTIMONIALS + NEWSLETTER */}
       <Section>
-        <SectionHeader eyebrow="Readers" title="What families are saying" subtitle="Real encouragement from neighbors across Middle Tennessee." />
-        <TestimonialCarousel items={homeTestimonials} />
+        <Reveal>
+          <SectionHeader eyebrow="Readers" title="What families are saying" subtitle="Real encouragement from neighbors across Middle Tennessee." />
+          <TestimonialCarousel items={homeTestimonials} />
 
-        <View style={styles.newsletterCard}>
-          <Text style={styles.newsletterTitle}>Newsletter</Text>
-          <Text style={styles.newsletterDesc}>
-            Get monthly highlights, new articles, and local faith-and-family resources delivered to your inbox.
-          </Text>
-          <Button title="Subscribe Now" variant="gold" fullWidth onPress={() => navigation.navigate('Subscribe')} />
-        </View>
+          <View style={styles.newsletterCard}>
+            <Text style={styles.newsletterTitle}>Newsletter</Text>
+            <Text style={styles.newsletterDesc}>
+              Get monthly highlights, new articles, and local faith-and-family resources delivered to your inbox.
+            </Text>
+            <Button title="Subscribe Now" variant="gold" fullWidth onPress={() => navigation.navigate('Subscribe')} />
+          </View>
+        </Reveal>
       </Section>
 
       {/* PRAYER CTA */}
       <Section>
-        <LinearGradient colors={[colors.navyAlt, colors.primary]} style={styles.prayerCta}>
-          <Text style={styles.prayerTitle}>Looking for prayer or encouragement?</Text>
-          <Text style={styles.prayerDesc}>
-            Share a request with our prayer team or explore articles curated to uplift your week.
-          </Text>
-          <View style={styles.prayerButtons}>
-            <Button title="Prayer" variant="gold" size="sm" onPress={() => navigation.navigate('Prayer')} />
-            <Button title="Read a featured story" variant="outlineLight" size="sm" onPress={() => navigation.navigate('Categories')} />
-          </View>
-        </LinearGradient>
+        <Reveal>
+          <LinearGradient colors={[colors.navyAlt, colors.primary]} style={styles.prayerCta}>
+            <Text style={styles.prayerTitle}>Looking for prayer or encouragement?</Text>
+            <Text style={styles.prayerDesc}>
+              Share a request with our prayer team or explore articles curated to uplift your week.
+            </Text>
+            <View style={styles.prayerButtons}>
+              <Button title="Prayer" variant="gold" size="sm" onPress={() => navigation.navigate('Prayer')} />
+              <Button title="Read a featured story" variant="outlineLight" size="sm" onPress={() => navigation.navigate('Categories')} />
+            </View>
+          </LinearGradient>
+        </Reveal>
       </Section>
     </Screen>
   );
@@ -180,7 +199,11 @@ const styles = StyleSheet.create({
     width: 110,
     height: 148,
     borderRadius: radii.sm,
-    ...StyleSheet.flatten({}),
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.35,
+    shadowRadius: 10,
+    elevation: 8,
   },
   heroTextCol: {
     flex: 1,

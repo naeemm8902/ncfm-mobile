@@ -13,8 +13,7 @@ export default function StatCard({ label, value, style }) {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
-    minWidth: '46%',
+    width: '48%',
     backgroundColor: colors.white,
     borderRadius: radii.lg,
     borderWidth: 1,

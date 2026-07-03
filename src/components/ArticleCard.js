@@ -1,13 +1,14 @@
 import React from 'react';
-import { Pressable, View, Text, ImageBackground, StyleSheet } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 import { colors, radii, shadow, spacing, type } from '../theme';
 import images from '../data/images';
 import { categoryConfig } from '../data/categories';
+import PressScale from './PressScale';
 
 export default function ArticleCard({ article, onPress, style }) {
   const cat = categoryConfig[article.category];
   return (
-    <Pressable onPress={onPress} style={[styles.card, shadow.sm, style]}>
+    <PressScale onPress={onPress} style={[styles.card, shadow.sm, style]}>
       <ImageBackground
         source={images[cat?.imageKey] || images.categorySpiritual}
         style={styles.image}
@@ -23,7 +24,7 @@ export default function ArticleCard({ article, onPress, style }) {
         <Text style={styles.excerpt} numberOfLines={3}>{article.excerpt}</Text>
         <Text style={styles.readMore}>Read article →</Text>
       </View>
-    </Pressable>
+    </PressScale>
   );
 }
 
