@@ -286,6 +286,7 @@ const styles = StyleSheet.create({
   talkCard: {
     borderRadius: radii.xl,
     padding: spacing.lg,
+    marginBottom: spacing.lg,
   },
   talkTitle: {
     ...type.h2,

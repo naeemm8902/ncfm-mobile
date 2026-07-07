@@ -44,6 +44,7 @@ export default function CategoriesScreen() {
 const styles = StyleSheet.create({
   grid: {
     gap: spacing.md,
+    marginBottom: spacing.lg,
   },
   gridItem: {
     width: '100%',

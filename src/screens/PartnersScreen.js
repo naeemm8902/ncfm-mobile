@@ -225,6 +225,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     padding: spacing.lg,
+    marginBottom: spacing.lg,
     ...shadow.sm,
   },
   cardTitle: {
@@ -332,6 +333,7 @@ const styles = StyleSheet.create({
   ctaBanner: {
     borderRadius: radii.xl,
     padding: spacing.lg,
+    marginBottom: spacing.lg,
   },
   ctaTitle: {
     ...type.h2,
@@ -369,8 +371,11 @@ const styles = StyleSheet.create({
   },
   bottomButtons: {
     flexDirection: 'row',
-    gap: 10,
+    gap: spacing.md,
     marginTop: spacing.lg,
+    marginBottom: spacing.lg,
     flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

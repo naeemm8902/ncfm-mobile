@@ -73,15 +73,19 @@ export default function IssuesScreen() {
       </Section>
 
       {/* One-at-a-time slideshow — swipe or use the arrows */}
-      <Reveal delay={140}>
-        {yearIssues.length > 0 ? (
-          <IssueSlider issues={yearIssues} />
-        ) : (
-          <View style={styles.emptyState}>
+      <Section>
+        <Reveal delay={140}>
+          {yearIssues.length > 0 ? (
+            <IssueSlider issues={yearIssues} />
+          ) : (
+            <View style={styles.emptyState}>
             <Text style={styles.emptyText}>No issues archived for {year} yet — check back soon.</Text>
           </View>
         )}
-      </Reveal>
+        </Reveal>
+      </Section>
+
+      <Section style={{ minHeight: spacing.xl }} />
     </Screen>
   );
 }

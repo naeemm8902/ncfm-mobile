@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     borderWidth: 1,
     borderColor: colors.goldLight,
+    marginBottom: spacing.lg,
   },
   listRow: {
     flexDirection: 'row',
@@ -184,6 +185,7 @@ const styles = StyleSheet.create({
     borderRadius: radii.lg,
     padding: spacing.lg,
     alignItems: 'center',
+    marginBottom: spacing.lg,
   },
   personPhoto: {
     width: 160,

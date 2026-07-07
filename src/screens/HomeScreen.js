@@ -38,25 +38,28 @@ export default function HomeScreen() {
     <Screen>
       {/* HERO */}
       <Reveal distance={0}>
-        <ImageBackground source={images.heroBg} style={styles.hero} resizeMode="cover">
-          <LinearGradient colors={['rgba(6,20,45,0.05)', 'rgba(6,20,45,0.6)']} style={StyleSheet.absoluteFill} />
-          <Pill label="December 2025 Issue" variant="gold" style={{ marginBottom: 10 }} />
-          <Text style={styles.heroTitle}>December Issue Available!</Text>
+        <View style={styles.hero}>
+          <Image source={images.heroBg} style={styles.heroBg} resizeMode="cover" />
+          <Image source={images.heroPortrait} style={styles.heroPortrait} resizeMode="contain" />
+          <View style={styles.heroContent}>
+            {/* <Pill label="December 2025 Issue" variant="gold" style={{ marginBottom: 10 }} /> */}
+            <Text style={styles.heroTitle}>December Issue Available!</Text>
 
-          <View style={styles.heroRow}>
-            <Image source={images.issueCover1} style={styles.heroCover} resizeMode="cover" />
-            <View style={styles.heroTextCol}>
-              <Text style={styles.heroName}>Megan Alexander</Text>
-              <Text style={styles.heroDesc}>Her New Book and Movie About the True Meaning of Christmas</Text>
-              <Text style={styles.heroMore}>and much more!</Text>
+            <View style={styles.heroRow}>
+              <Image source={images.issueCover1} style={styles.heroCover} resizeMode="cover" />
+              <View style={styles.heroTextCol}>
+                <Text style={styles.heroName}>Megan Alexander</Text>
+                <Text style={styles.heroDesc}>Her New Book and Movie About the True Meaning of Christmas</Text>
+                <Text style={styles.heroMore}>and much more!</Text>
+              </View>
+            </View>
+
+            <View style={styles.heroButtons}>
+              <Button title="Read Now" variant="gold" size="sm" onPress={() => navigation.navigate('Issues')} />
+              <Button title="Subscribe" variant="outlineLight" size="sm" onPress={() => navigation.navigate('Subscribe')} />
             </View>
           </View>
-
-          <View style={styles.heroButtons}>
-            <Button title="Read Now" variant="gold" size="sm" onPress={() => navigation.navigate('Issues')} />
-            <Button title="Subscribe" variant="outlineLight" size="sm" onPress={() => navigation.navigate('Subscribe')} />
-          </View>
-        </ImageBackground>
+        </View>
       </Reveal>
 
       <Section first>
@@ -175,30 +178,48 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   hero: {
+    width: '100%',
     minHeight: 340,
-    padding: spacing.lg,
     justifyContent: 'flex-start',
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  heroBg: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  heroPortrait: {
+    position: 'absolute',
+    right: -12,
+    bottom: 0,
+    width: '46%',
+    height: '80%',
+  },
+  heroContent: {
+    paddingHorizontal: spacing.xl,
     paddingTop: spacing.xl,
+    paddingBottom: spacing.xl,
   },
   heroTitle: {
     ...type.h1,
     fontSize: 28,
-    color: colors.white,
+    color: colors.navy,
     textTransform: 'uppercase',
     marginBottom: spacing.lg,
-    textShadowColor: 'rgba(0,0,0,0.5)',
-    textShadowOffset: { width: 1, height: 2 },
-    textShadowRadius: 8,
+    textShadowColor: 'rgba(255,255,255,0.7)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 6,
   },
   heroRow: {
     flexDirection: 'row',
-    gap: spacing.md,
+    gap: spacing.sm,
     marginBottom: spacing.lg,
+    paddingRight: 96,
   },
   heroCover: {
-    width: 110,
-    height: 148,
+    width: 100,
+    height: 134,
     borderRadius: radii.sm,
+    transform: [{ rotate: '-6deg' }],
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.35,
@@ -211,15 +232,22 @@ const styles = StyleSheet.create({
   },
   heroName: {
     ...type.h2,
-    fontSize: 24,
+    fontSize: 21,
     color: colors.white,
     marginBottom: 6,
+    textShadowColor: 'rgba(0,0,0,0.6)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 6,
   },
   heroDesc: {
     ...type.body,
-    fontSize: 14.5,
+    fontSize: 13.5,
+    lineHeight: 18,
     color: colors.white,
     marginBottom: 6,
+    textShadowColor: 'rgba(0,0,0,0.6)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 5,
   },
   heroMore: {
     ...type.body,
@@ -227,6 +255,9 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontFamily: type.h4.fontFamily,
     color: colors.white,
+    textShadowColor: 'rgba(0,0,0,0.6)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 5,
   },
   heroButtons: {
     flexDirection: 'row',
@@ -316,6 +347,7 @@ const styles = StyleSheet.create({
   prayerCta: {
     borderRadius: radii.lg,
     padding: spacing.lg,
+    marginBottom: spacing.lg,
   },
   prayerTitle: {
     ...type.h2,

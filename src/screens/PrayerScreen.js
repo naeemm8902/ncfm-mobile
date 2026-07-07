@@ -261,6 +261,7 @@ const styles = StyleSheet.create({
   ctaCard: {
     borderRadius: radii.lg,
     padding: spacing.lg,
+    marginBottom: spacing.lg,
   },
   ctaTitle: {
     ...type.h2,
