@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
   },
   heroBg: {
     ...StyleSheet.absoluteFillObject,
+    transform: [{ scale: 1.18 }],
   },
   heroPortrait: {
     position: 'absolute',

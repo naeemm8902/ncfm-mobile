@@ -26,7 +26,7 @@ export default function ShopScreen() {
         <PartnerMessageCard startIndex={2} />
       </Section>
 
-      <Section>
+      <Section style={styles.gridSection}>
         <PillTabs options={productCategories} value={category} onChange={setCategory} style={{ marginBottom: spacing.sm }} />
         <Text style={styles.count}>{filtered.length} results found</Text>
 
@@ -64,6 +64,9 @@ const styles = StyleSheet.create({
     ...type.bodySmall,
     color: colors.textMuted,
     marginBottom: spacing.md,
+  },
+  gridSection: {
+    paddingBottom: spacing.xxl,
   },
   grid: {
     flexDirection: 'row',
