@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Nashville Christian Family",
-    "slug": "nashville-christian-family",
+    "slug": "ncfm-ios-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -30,6 +30,12 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "44e0478b-2546-4ca0-99aa-62ef8e308094"
+      }
+    },
+    "owner": "jwrnd"
   }
 }
